@@ -1,0 +1,14 @@
+{
+    "name": "poe-calculators",
+    "private": true,
+    "version": "0.0.1",
+    "main": "index.js",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^13.1.6",
+        "typescript": "^3.7.4"
+    },
+    "scripts": {
+        "build": "tsc -p ."
+    }
+}

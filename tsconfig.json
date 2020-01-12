@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "target": "ES6",
+        "lib": ["ES6"],
+        "outDir": "dist",
+        "inlineSourceMap": true
+    },
+    "compileOnSave": true,
+    "include": ["src"]
+}
