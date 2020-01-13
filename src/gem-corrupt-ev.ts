@@ -1,25 +1,10 @@
-import { ItemData, readSkillGemData } from './poe-ninja-data';
+import { readGemsByNameVariant } from './gem-data';
 
-type GemData = ItemData & { vaal?: boolean };
-
-const skillGemData: GemData[] = readSkillGemData();
-
-const allGems = {};
-for (const gem of skillGemData) {
-    gem.vaal = gem.name.startsWith('Vaal ');
-    if (gem.vaal) {
-        gem.variant += ' Vaal';
-    }
-    const baseName = gem.name.replace(/^Vaal /, '');
-    if (undefined == allGems[baseName]) {
-        allGems[baseName] = {};
-    }
-    allGems[baseName][gem.variant] = gem;
-}
+const gemsByNameVariant = readGemsByNameVariant(true);
 
 const gemProfitabilities = [];
-for (const baseName of Object.keys(allGems)) {
-    const gem = allGems[baseName];
+for (const baseName of Object.keys(gemsByNameVariant)) {
+    const gem = gemsByNameVariant[baseName];
     if (gem['20/20'] == undefined) {
         continue;
     }
