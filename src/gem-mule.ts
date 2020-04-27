@@ -46,5 +46,5 @@ gemProfitabilities.forEach(p => p.profit = p.value - p.cost);
 gemProfitabilities.sort((a, b) => a.profit - b.profit);
 
 for (const p of gemProfitabilities.slice(gemProfitabilities.length - 20)) {
-    console.log(`${p.name.padEnd(30)} ${p.variant.padEnd(14)}: EP ${p.profit} Cost ${p.cost} Count ${p.count}`);
+    console.log(`${p.name.padEnd(35)} ${p.variant.padEnd(14)}: EP ${p.profit} Cost ${p.cost} Count ${p.count}`);
 }

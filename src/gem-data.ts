@@ -1,14 +1,15 @@
 import { ItemData, readSkillGemData } from "./poe-ninja-data";
 
+export type GemVariant = '1'|'20'|'1/20'|'20/20'|'1 Vaal'|'20 Vaal'|'1/20 Vaal'|'20/20 Vaal';
 export type GemData = ItemData & { vaal?: boolean };
 export type GemsByNameVariant = {
     [name: string]: {
-        [variant: string]: GemData;
+        [variant in GemVariant]: GemData;
     };
 };
 
 export function readGemsByNameVariant(normalizeVaal: boolean): GemsByNameVariant {
-    const skillGemData: GemData[] = readSkillGemData();
+    const skillGemData: Partial<GemData>[] = readSkillGemData();
 
     const gemsByName = {};
     for (const gem of skillGemData) {

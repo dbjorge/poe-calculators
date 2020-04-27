@@ -38,7 +38,6 @@ export type ItemData = {
 };
 
 const dataDir = path.join(__dirname, '../data');
-const skillGemDataFile = path.join(dataDir, 'skill_gems.json');
 
 function readLines(fileName: string): ItemData[] {
     const filePath = path.join(dataDir, fileName);
