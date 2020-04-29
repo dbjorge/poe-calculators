@@ -13,6 +13,7 @@ function download(dataFileName: string, url: string) {
 }
 
 fs.mkdirSync(dataDir, {recursive: true});
+download('currency.json', `https://poe.ninja/api/data/currencyoverview?league=${league}&type=Currency`)
 download('skill_gems.json', `https://poe.ninja/api/data/ItemOverview?league=${league}&type=SkillGem`);
 download('unique_armour.json', `https://poe.ninja/api/data/ItemOverview?league=${league}&type=UniqueArmour`);
 download('unique_jewel.json', `https://poe.ninja/api/data/ItemOverview?league=${league}&type=UniqueJewel`);
