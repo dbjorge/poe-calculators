@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as https from 'https';
 import * as path from 'path';
 
-const league = 'Delirium';
+const league = 'Heist';
 
 const dataDir = path.join(__dirname, '../data');
 
