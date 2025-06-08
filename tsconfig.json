@@ -2,9 +2,10 @@
     "compilerOptions": {
         "module": "CommonJS",
         "target": "ES6",
-        "lib": ["ES6"],
+        "lib": ["ES6", "DOM"],
         "outDir": "dist",
-        "inlineSourceMap": true
+        "inlineSourceMap": true,
+        "jsx": "react-jsx"
     },
     "compileOnSave": true,
     "include": ["src"]
