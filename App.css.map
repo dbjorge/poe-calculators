@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/pages/App.module.css", "../src/pages/RollingMagmaCalculator.module.css"],
+  "sourcesContent": [".nav {}\n.navHome {} ", ".container {}\n.numberField {\n  display: block;\n\n  input {\n    margin: 16px\n  }\n}\n\n.actionButton {\n  display: block;\n  margin: 16px;\n}\n\n.simulationCanvas {\n  display: block;\n  border: 2px solid #222;\n  margin: 16px;\n}"],
+  "mappings": ";AAAA,CAACA;AAAK;AACN,CAACC;AAAS;;;ACDV,CAACC;AAAW;AACZ,CAACC;AACC,WAAS;AAET;AACE,YAAQ;AACV;AACF;AAEA,CAACC;AACC,WAAS;AACT,UAAQ;AACV;AAEA,CAACC;AACC,WAAS;AACT,UAAQ,IAAI,MAAM;AAClB,UAAQ;AACV;",
+  "names": ["nav", "navHome", "container", "numberField", "actionButton", "simulationCanvas"]
+}

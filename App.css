@@ -1,0 +1,25 @@
+/* src/pages/App.module.css */
+.App_nav {
+}
+.App_navHome {
+}
+
+/* src/pages/RollingMagmaCalculator.module.css */
+.RollingMagmaCalculator_container {
+}
+.RollingMagmaCalculator_numberField {
+  display: block;
+  input {
+    margin: 16px;
+  }
+}
+.RollingMagmaCalculator_actionButton {
+  display: block;
+  margin: 16px;
+}
+.RollingMagmaCalculator_simulationCanvas {
+  display: block;
+  border: 2px solid #222;
+  margin: 16px;
+}
+/*# sourceMappingURL=App.css.map */
