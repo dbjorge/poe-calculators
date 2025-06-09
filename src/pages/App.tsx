@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import styles from "./App.module.css";
@@ -46,5 +46,5 @@ const App: React.FC = () => {
 };
 App.displayName = "App";
 
-const root = document.getElementById('root');
+const root = document.getElementById("root");
 ReactDOM.createRoot(root).render(<App />);

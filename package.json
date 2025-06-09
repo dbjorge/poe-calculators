@@ -6,12 +6,15 @@
     "license": "MIT",
     "devDependencies": {
         "@types/node": "^22.15.30",
+        "@types/react": "^19.1.6",
         "esbuild": "^0.25.5",
+        "tsx": "^4.19.4",
         "typescript": "^5.8.3"
     },
     "scripts": {
         "build": "node ./esbuild.mjs",
-        "dev": "node ./esbuild.mjs --dev"
+        "dev": "node ./esbuild.mjs --dev",
+        "test": "tsx --test"
     },
     "dependencies": {
         "react": "^19.1.0",

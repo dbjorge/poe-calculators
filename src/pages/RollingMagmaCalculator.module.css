@@ -1,0 +1,19 @@
+.container {}
+.numberField {
+  display: block;
+
+  input {
+    margin: 16px
+  }
+}
+
+.actionButton {
+  display: block;
+  margin: 16px;
+}
+
+.simulationCanvas {
+  display: block;
+  border: 2px solid #222;
+  margin: 16px;
+}

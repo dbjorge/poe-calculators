@@ -18,7 +18,8 @@ const config = {
 if (process.argv.includes('--dev')) {
   const ctx = await esbuild.context(config)
   await ctx.serve({
-    servedir: 'dist'
+    servedir: 'dist',
+    fallback: 'dist/index.html'
   })
 } else {
   await esbuild.build(config)
