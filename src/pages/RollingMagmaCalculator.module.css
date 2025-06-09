@@ -3,12 +3,15 @@
   display: block;
 
   input {
-    margin: 16px
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    width: 4rem;
   }
 }
 
 .actionButton {
-  display: block;
   margin: 16px;
 }
 

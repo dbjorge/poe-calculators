@@ -161,10 +161,13 @@ export const RollingMagmaCalculator: React.FC = () => {
       <NumberField label="Mine distance from enemy" disabled={fieldsDisabled} value={mineDistanceFromEnemyStr} setValue={setMineDistanceFromEnemy} />
       <NumberField label="Simulation speed" disabled={fieldsDisabled} value={simulationSpeedStr} setValue={setSimulationSpeed} />
       
-      <button className={styles.actionButton} onClick={simulateOnce}>Simulate once</button>
-      <button className={styles.actionButton} onClick={toggleSimulation}>{simulationState === 'paused' ? 'Start' : 'Stop'} simulation</button>
+      <div>
+        <button className={styles.actionButton} onClick={toggleSimulation}>{simulationState === 'paused' ? 'Start' : 'Stop'} simulation</button>
+        <button className={styles.actionButton} onClick={simulateOnce}>Simulate once</button>
+        <span>Avg hits/mine: {hits / simulations}</span>
+      </div>
       <canvas className={styles.simulationCanvas} ref={canvasRef} width={600} height={600}/>
-      <div>Average hits per simulation: {hits / simulations}</div>
+      
     </div>
   )
 };
