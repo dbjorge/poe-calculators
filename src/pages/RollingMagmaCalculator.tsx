@@ -164,7 +164,10 @@ export const RollingMagmaCalculator: React.FC = () => {
       <div>
         <button className={styles.actionButton} onClick={toggleSimulation}>{simulationState === 'paused' ? 'Start' : 'Stop'} simulation</button>
         <button className={styles.actionButton} onClick={simulateOnce}>Simulate once</button>
-        <span>Avg hits/mine: {hits / simulations}</span>
+      </div>
+      <div className={styles.results}>
+        <span className={styles.result}>Simulations: {simulations}</span>
+        <span className={styles.result}>Avg hits/mine: {(hits / simulations).toFixed(2)}</span>
       </div>
       <canvas className={styles.simulationCanvas} ref={canvasRef} width={600} height={600}/>
       

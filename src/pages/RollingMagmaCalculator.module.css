@@ -20,3 +20,13 @@
   border: 2px solid #222;
   margin: 16px;
 }
+
+.results {
+  margin-left: 16px;
+}
+
+.result {
+  display: inline-block;
+  min-width: 8rem;
+  margin: 6px;
+}
