@@ -8,14 +8,44 @@ const endProjColor: Color = strToColor('#00ff00')
 
 type SimulationState = 'paused' | 'once' | 'continuous'
 
+type NumberFieldProps = {
+  label: string,
+  value: string,
+  disabled?: boolean
+  setValue: (number) => void
+}
+const NumberField: React.FC<NumberFieldProps> = ({label, disabled, value, setValue}) => {
+  return (
+    <label className={styles.numberField}>
+      <input
+        disabled={disabled}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      {label}
+    </label>
+  );
+}
+
 export const RollingMagmaCalculator: React.FC = () => {
-  const [chains, setChains] = useState(6)
-  const [projCount, setProjCount] = useState(1)
-  const [aoe, setAoe] = useState(1.0)
-  const [projSpeed, setProjSpeed] = useState(1.0)
-  const [enemyRadius, setEnemyRadius] = useState(.5)
-  const [mineDistanceFromEnemy, setMineDistanceFromEnemy] = useState(0)
-  const [simulationSpeed, setSimulationSpeed] = useState(1)
+  // Form fields
+  const [chainsStr, setChains] = useState('6')
+  const [projCountStr, setProjCount] = useState('1')
+  const [aoeStr, setAoe] = useState('1.0')
+  const [projSpeedStr, setProjSpeed] = useState('1.0')
+  const [enemyRadiusStr, setEnemyRadius] = useState('.5')
+  const [mineDistanceFromEnemyStr, setMineDistanceFromEnemy] = useState('0')
+  const [simulationSpeedStr, setSimulationSpeed] = useState('1')
+
+  const chains = parseInt(chainsStr)
+  const projCount = parseInt(projCountStr)
+  const aoe = parseFloat(aoeStr)
+  const projSpeed = parseFloat(projSpeedStr)
+  const enemyRadius = parseFloat(enemyRadiusStr)
+  const mineDistanceFromEnemy = parseFloat(mineDistanceFromEnemyStr)
+  const simulationSpeed = parseFloat(simulationSpeedStr)
+
+  // Simulation state/results
   const [hits, setHits] = useState(0)
   const [simulations, setSimulations] = useState(0)
   const [simulationState, setSimulationState] = useState<SimulationState>('paused')
@@ -118,33 +148,18 @@ export const RollingMagmaCalculator: React.FC = () => {
     }
   }
 
-  type NumberFieldProps = {
-    label: string,
-    value: number,
-    setValue: (number) => void
-  }
-  const NumberField: React.FC<NumberFieldProps> = ({label, value, setValue}) => {
-    return (
-      <label className={styles.numberField}>
-        <input
-          disabled={simulationState !== 'paused'}
-          value={value}
-          onChange={(e) => setValue(parseFloat(e.target.value))}
-        />
-        {label}
-      </label>
-    );
-  }
+  const fieldsDisabled = simulationState !== 'paused'
 
   return (
     <div className={styles.container}>
       <h1>Rolling Magma Simulator</h1>
-      <NumberField label="Projectile count" value={projCount} setValue={setProjCount} />
-      <NumberField label="AOE modifier" value={aoe} setValue={setAoe} />
-      <NumberField label="Projectile speed modifier" value={projSpeed} setValue={setProjSpeed} />
-      <NumberField label="Enemy radius" value={enemyRadius} setValue={setEnemyRadius} />
-      <NumberField label="Mine distance from enemy" value={mineDistanceFromEnemy} setValue={setMineDistanceFromEnemy} />
-      <NumberField label="Simulation speed" value={simulationSpeed} setValue={setSimulationSpeed} />
+      <NumberField label="Chains" disabled={fieldsDisabled} value={chainsStr} setValue={setChains} />
+      <NumberField label="Projectile count" disabled={fieldsDisabled} value={projCountStr} setValue={setProjCount} />
+      <NumberField label="AOE modifier" disabled={fieldsDisabled} value={aoeStr} setValue={setAoe} />
+      <NumberField label="Projectile speed modifier" disabled={fieldsDisabled} value={projSpeedStr} setValue={setProjSpeed} />
+      <NumberField label="Enemy radius" disabled={fieldsDisabled} value={enemyRadiusStr} setValue={setEnemyRadius} />
+      <NumberField label="Mine distance from enemy" disabled={fieldsDisabled} value={mineDistanceFromEnemyStr} setValue={setMineDistanceFromEnemy} />
+      <NumberField label="Simulation speed" disabled={fieldsDisabled} value={simulationSpeedStr} setValue={setSimulationSpeed} />
       
       <button className={styles.actionButton} onClick={simulateOnce}>Simulate once</button>
       <button className={styles.actionButton} onClick={toggleSimulation}>{simulationState === 'paused' ? 'Start' : 'Stop'} simulation</button>
