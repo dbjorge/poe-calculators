@@ -1,6 +1,6 @@
 import * as React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Link, Route, Routes } from "react-router-dom";
 import styles from "./App.module.css";
 import { RollingMagmaCalculator } from "./RollingMagmaCalculator";
 
@@ -35,13 +35,14 @@ Home.displayName = "Home";
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    // Using HashRouter instead of BrowserRouter for GitHub Pages compat
+    <HashRouter>
       <TopNav />
       <Routes>
         <Route index element={<Home />} />
         <Route path="/rolling-magma" element={<RollingMagmaCalculator />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 App.displayName = "App";
