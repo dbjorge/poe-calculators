@@ -3,6 +3,8 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./RollingMagmaCalculator.module.css";
 import { add, clamp, distSqr, randomVector } from "../lib/math";
 
+const FRAME_DELAY_MS = 0
+
 // Per wiki
 const BASE_PROJ_SPACING_METRES = 1.6;
 // Per PoB, includes +0.4m from level 20
@@ -119,7 +121,6 @@ export const RollingMagmaCalculator: React.FC = () => {
     ENEMY_RADIUS_SCENARIOS[0][1]
   );
   const [mineDistanceFromEnemyStr, setMineDistanceFromEnemy] = useState("0");
-  const [simulationSpeedStr, setSimulationSpeed] = useState("10");
 
   const chains = clamp(0, 1000000, parseInt(chainsStr));
   const returnProbability = clamp(0, 1, parseFloat(returnProbabilityStr))
@@ -128,7 +129,6 @@ export const RollingMagmaCalculator: React.FC = () => {
   const projSpeed = clamp(0, 1000000, parseFloat(projSpeedStr));
   const enemyRadius = clamp(0.001, 1000000, parseFloat(enemyRadiusStr));
   const mineDistanceFromEnemy = clamp(0, 1000000, parseFloat(mineDistanceFromEnemyStr));
-  const simulationSpeed = clamp(0.1, 50, parseFloat(simulationSpeedStr));
 
   // Simulation state/results
   const [hits, setHits] = useState(0);
@@ -136,7 +136,6 @@ export const RollingMagmaCalculator: React.FC = () => {
   const [simulationState, setSimulationState] =
     useState<SimulationState>("paused");
 
-  const frameDelayMs = 50 / simulationSpeed;
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const scale = 50;
@@ -177,6 +176,11 @@ export const RollingMagmaCalculator: React.FC = () => {
     let simulatedHits = 0;
 
     while (!cancelRef.canceled) {
+      await new Promise((r) => setTimeout(r, FRAME_DELAY_MS));
+      if (cancelRef.canceled) {
+        return;
+      }
+
       simulationIndex++;
       const mine = add(enemy, randomVector(mineDistanceFromEnemy * scale));
       const returns = Math.random() <= returnProbability ? 1 : 0
@@ -198,10 +202,6 @@ export const RollingMagmaCalculator: React.FC = () => {
       // chainIndex = 0 represents the initial hit, ie, there are
       // chains + 1 total hits, plus possibly a return
       for (let chainIndex = 0; chainIndex <= (chains + returns); chainIndex++) {
-        await new Promise((r) => setTimeout(r, frameDelayMs));
-        if (cancelRef.canceled) {
-          return;
-        }
 
         const projColor = lerpColor(
           startProjColor,
@@ -294,12 +294,6 @@ export const RollingMagmaCalculator: React.FC = () => {
         disabled={fieldsDisabled}
         value={mineDistanceFromEnemyStr}
         setValue={setMineDistanceFromEnemy}
-      />
-      <NumberField
-        label="Simulation speed"
-        disabled={fieldsDisabled}
-        value={simulationSpeedStr}
-        setValue={setSimulationSpeed}
       />
 
       <div>
